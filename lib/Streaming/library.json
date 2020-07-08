@@ -1,0 +1,16 @@
+{
+  "name": "Streaming",
+  "keywords": "print, output, operator, template",
+  "description": "Streaming C++-style Output with Operator <<",
+  "authors":
+  {
+    "name": "Mikal Hart",
+    "email": "mikal@arduiniana.org",
+    "url": "http://arduiniana.org"
+  },
+  "version": "5",
+  "downloadUrl": "http://arduiniana.org/Streaming/Streaming5.zip",
+  "include": "Streaming",
+  "frameworks": "arduino",
+  "platforms": "*"
+ }
