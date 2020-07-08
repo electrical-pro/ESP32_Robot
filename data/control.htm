@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="target-densitydpi=device-dpi, user-scalable=no" />
+<meta name="theme-color" content='#14af74' />
+<style>body{background-color:#000b0e;font-family:Arial;Color:#fff}</style>
+
+
+<script>
+  var t;
+
+window.onload = function () {};
+
+var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']);
+// var connection = new WebSocket('ws://'+'192.168.4.104'+':81/', ['arduino']);
+connection.binaryType = 'arraybuffer';
+connection.onopen = function () {  
+  <!-- connection.send('Connect ' + new Date());  -->
+  t = setInterval(function(){ sendCommand(105,0,0); }, 1000);  // say that we're still online
+}; 
+connection.onerror = function (error) {    
+	console.log('WebSocket Error ', error);
+};
+
+connection.onclose = function () {    
+  clearInterval(t);
+  console.log('Connection closed');
+};
+
+connection.onmessage = function (e) {  
+  if (typeof(e.data)=='string') { // Text frame
+		//console.log('Server: ', e.data);
+    if(e.data.startsWith('TELEMETRY:'))
+    {
+      var telem = e.data;
+      telem=telem.substring(11);
+      document.getElementById("telemetry").innerHTML = telem;
+    }
+  } else { // Binary frame
+    var dv = new DataView(e.data);
+    var grp = dv.getUint8(0);
+    var cmd = dv.getUint8(1);
+    var val = dv.getFloat32(2,true);
+    console.log(grp + ' ' + cmd + ' ' + val);
+    parseValue(grp,cmd,val);
+  }
+};
+
+function sendCommand(grp, cmd, val) {
+  var buf = new ArrayBuffer(6);
+  var dv = new DataView(buf);
+  dv.setUint8(0,grp);
+  dv.setUint8(1,cmd);
+  dv.setFloat32(2,val,true);
+ //console.log(buf);
+  connection.send(buf);
+}
+
+function resetValue(e,grp,cmd) {
+  e.value = 0;
+  sendCommand(grp,cmd,0);
+}
+</script>
+<style>
+html {
+  touch-action: manipulation; /* Improves responsiveness on touch device */
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+   /*transform: rotate(270deg); */
+  width: 450px;
+  height: 88px;
+  margin: 230px 0 0 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 80px;
+  /*cursor: pointer;*/
+  /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+  background: #0b3641;
+  /*border-radius: 1.3px;*/
+  /*border: 0.2px solid #010101;*/
+}
+input[type=range]::-webkit-slider-thumb {
+  /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+  border: 5px solid #0b3641;
+  height: 100%;
+  width: 35px;
+  border-radius: 30px;
+  background: #0bf789;
+  /*cursor: pointer;*/
+  -webkit-appearance: none;
+   /*margin-top: -14px; */
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #0b3641;
+}
+
+#telemetry {
+  padding-bottom: 3px;
+  padding-top: 3px;
+  text-align: right;
+}
+
+#conrainer {
+  margin-top: -50px;
+}
+
+
+
+</style>
+</head>
+
+<body>
+  <div id="telemetry">============ TELEMETRY ============</div>
+  <div id="conrainer">
+<input type="range" min="-100" max="100" step="1" oninput="sendCommand(100,0,this.value)"  onmouseup="resetValue(this,100,0)" ontouchend="resetValue(this,100,0)" style="transform:rotate(270deg);">
+<input type="range" min="-100" max="100" step="1" oninput="sendCommand(100,1,this.value)" onmouseup="resetValue(this,100,1)"  ontouchend="resetValue(this,100,1)"><br />
+</div>
+
+<label id="lbl"> </label>
+
+</body>

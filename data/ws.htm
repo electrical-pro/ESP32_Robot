@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8">
+<meta name="theme-color" content="#031b26" />
+ 
+<title>WebSockets Client</title>
+
+<style>body { background-color: #000000; font-family: Arial; Color: white;}</style>
+
+<style>
+ #text {
+    font-size: 82%;
+      -moz-border-radius:20px;
+      -webkit-border-radius:20px;
+      border-radius:20px;
+      padding:7px ;
+      border:0px solid #2e2e2e;
+      text-align: center;
+      outline: none;
+  }
+
+#disconnect {
+    
+	background-color:#126946;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	padding:8px ;
+	color:#ffffff;
+	border:0px;
+	outline: none;
+	
+	}
+	
+#disconnect:hover {
+	background-color:#07ad68;
+}
+
+#disconnect:active {
+  background-color: #01596b;
+  box-shadow: 0 1px #666;
+  transform: translateY(1px);
+}
+</style>
+ 
+</head>
+<body>
+<script>
+$(document).ready(function() {
+
+  if(!("WebSocket" in window)){
+  $('#chatLog, input, button, #examples').fadeOut("fast");
+  $('<p>Oh no, you need a browser that supports WebSockets. How about <a href="http://www.google.com/chrome">Google Chrome</a>?</p>').appendTo('#container');
+  }else{
+      //The user has WebSockets
+
+      connect();
+
+      function connect(){
+        var socket;
+        var host = "ws://" + location.host;
+        host = host + ":81";
+
+          try{
+              var socket = new WebSocket(host);
+
+               $("#state").text("Connecting...");
+               $("#state").css('color', 'yellow');
+
+              socket.onopen = function(){
+                $("#state").text("Socket Status: open");
+                $("#state").css('color', 'green');
+              }
+
+              socket.onmessage = function(msg){
+             	 message('<p class="message">Received: '+msg.data);
+              }
+
+              socket.onclose = function(){
+                $("#state").text("Socket Status: closed");
+                $("#state").css('color', 'red');
+              }			
+
+          } catch(exception){
+            $("#state").text("Socket Status: ERROR");
+            $("#state").css('color', 'red');
+          }
+
+          function send(){
+              var text = $('#text').val();
+
+              if(text==""){
+                  message('<p class="warning">Please enter a message');
+                  return ;
+              }
+              try{
+                  socket.send(text);
+                  message('<p class="event">Sent: '+text)
+
+              } catch(exception){
+                 message('<p class="warning">');
+              }
+              $('#text').val("");
+          }
+
+          function message(msg){
+            $('#chatLog').append(msg+'</p>');
+            $("html, body").animate({ scrollTop: $(document).height() }, 100);
+          }
+          
+
+          $('#text').keypress(function(event) {
+              
+              if (event.keyCode == '13') {
+                send();
+              }
+
+          });	
+
+      }//End connect
+
+  }//End else
+
+});
+</script>  
+  
+  
+<div id="wrapper">
+    
+ 
+    <div id="container">
+        
+ 
+        <h1>WebSockets Client</h1>
+        <hr>
+        <div id = "state"></div>
+        <hr>
+ 
+        <div id="chatLog">
+ 
+        </div><!-- #chatLog -->
+ 
+        <input id="text" type="text" />
+        <button id="disconnect">Disconnect</button>
+ 
+    </div><!-- #container -->
+ 
+</div>
+</body>
+</html>​
+

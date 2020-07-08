@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style>
+		div {
+			background-color: lightgrey;
+			width: 300px;
+			border: 25px solid green;
+			padding: 25px;
+			margin: 25px;
+		}
+		</style>
+		
+		<!-- <style>body{background-color:#000f17;font-family:Arial;Color:#fff}</style> -->
+
+	<script>
+	var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']);
+	//var connection = new WebSocket('ws://192.168.4.104:81/', ['arduino']);
+	connection.binaryType = 'arraybuffer';
+	connection.onopen = function () {  
+		<!-- connection.send('Connect ' + new Date());  -->
+	}; 
+	connection.onerror = function (error) {    
+		console.log('WebSocket Error ', error);
+	};
+	connection.onmessage = function (e) {  
+	  if (typeof(e.data)=='string') { // Text frame
+  		console.log('Server: ', e.data);
+  		if (e.data[0]=='c') {
+  		  cmd = e.data.substr(0,3);
+  		  val = e.data.substr(3);
+  		} else if (e.data[0]=='w') {
+  		  var str = e.data.substr(1);
+  		  parseWifiCommand(str);
+  		} else {
+  		  cmd = e.data.substr(0,1);
+  		  val = e.data.substr(1);
+  		}
+		  document.getElementById(cmd).value = parseFloat(val);
+		  val=Number(val).toFixed(2) // two decimal places
+		  document.getElementById(cmd+'_value').value=val;  // is this right way to fix?
+	  } else { // Binary
+	  }
+	};
+	function updateSliderText(e) {
+		document.getElementById(e.id+'_value').value=e.value;  // update slider-value in textfield
+	}
+	function sendData(e) {
+	 // var id = event.target.id;
+	 // var val = parseFloat(document.getElementById(id).value).toString(10);
+	  var val = e.value;
+	  var val2 = e.id + val + 'x';
+	  console.log(val2);
+	  connection.send(val2);
+		updateSliderText(e);
+	}
+	function sendCommand(cmd, val) {
+    var text = cmd + val + 'x';
+    console.log(text);
+    connection.send(text);
+  }
+  function sendWifiDetails() {
+    /*
+    Check if fields are non-empty. Key should be longer than 8 characters.
+    */
+    var ssid = document.getElementById('WifiSSID').value;
+    var key = document.getElementById('WifiKey').value;
+    sendCommand('ws', ssid);
+    sendCommand('wk', key);
+  }
+  function parseWifiCommand(cmdStr) {
+    var cmd = cmdStr.substr(0,1);
+    var str = cmdStr.substr(1);
+    
+    switch (cmd) {
+      case 'l': // Received list of WiFi networks
+        var strSplit = str.split(",");
+        
+        var select = document.getElementById("SSIDlist");
+        var length = select.options.length;
+    
+        // Remove old options
+        for (i = 0; i < length; i++) {
+          select.options[i] = null;
+        }
+        // Add newly received list
+        console.log(strSplit.lenth);
+        for (i=0; i<strSplit.length; i++) {
+          var c = document.createElement("option");
+          c.text = strSplit[i];
+          select.options.add(c);
+        }
+        break;
+      case 's':
+        var e = document.getElementById('WifiSSID');
+        e.value = str;
+        break;
+      case 'm':
+        var e = document.getElementsByName('wm');
+        e[parseInt(str)].checked = true;
+        break;
+    }
+  }
+  function selectWifiFromList(str) {
+    e = document.getElementById("WifiSSID");
+    e.value = str;
+  }
+	</script>
+	<title>Balancing robot interface</title>
+</head>
+
+<body>
+	<form>
+		<fieldset>
+			<legend>PID tuning (not saved to EEPROM)</legend>
+			<table cellpadding="10"><tr><td>
+			Angle:<br />
+			P: <input id="c1p" type="range" min="0.1" max="5" step="0.01" oninput=sendData(this);><input type="text" id="c1p_value" readonly value="" style="width:40px"><br />
+			I: <input id="c1i" type="range" min="0" max="2" step="0.01" oninput=sendData(this);><input type="text" id="c1i_value" readonly value="" style="width:40px"><br />
+			D: <input id="c1d" type="range" min="0" max="0.9" step="0.001" oninput=sendData(this);><input type="text" id="c1d_value" readonly value="" style="width:40px"><br />
+			N: <input id="c1n" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c1n_value" readonly value="" style="width:40px"><br />
+			R: <input id="c1r" type="range" min="0" max="1" step="0.01" oninput=sendData(this);><input type="text" id="c1r_value" readonly value="" style="width:40px"><br />
+			Max: <input id="c1m" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c1m_value" readonly value="" style="width:40px"><br />
+			Min: <input id="c1o" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c1o_value" readonly value="" style="width:40px"><br />
+			<input id="c1t" type="radio" name="cType" value="0" onchange=sendData(this);>P
+			<input id="c1t" type="radio" name="cType" value="1" onchange=sendData(this);>PI
+			<input id="c1t" type="radio" name="cType" value="2" onchange=sendData(this);>PD
+			<input id="c1t" type="radio" name="cType" value="3" onchange=sendData(this);>PID<br />
+			</td><td>
+			Pos:<br />
+			P: <input id="c2p" type="range" min="0" max="10" step="0.1" oninput=sendData(this);><input type="text" id="c2p_value" readonly value="" style="width:40px"><br />
+			I: <input id="c2i" type="range" min="0" max="5" step="0.01" oninput=sendData(this);><input type="text" id="c2i_value" readonly value="" style="width:40px"><br />
+			D: <input id="c2d" type="range" min="0" max="3" step="0.01" oninput=sendData(this);><input type="text" id="c2d_value" readonly value="" style="width:40px"><br />
+			N: <input id="c2n" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c2n_value" readonly value="" style="width:40px"><br />
+			R: <input id="c2r" type="range" min="0" max="1" step="0.01" oninput=sendData(this);><input type="text" id="c2r_value" readonly value="" style="width:40px"><br />
+			Max: <input id="c2m" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c2m_value" readonly value="" style="width:40px"><br />
+			Min: <input id="c2o" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c2o_value" readonly value="" style="width:40px"><br />
+			<input id="c2t" type="radio" name="cType" value="0" onchange=sendData(this);>P
+			<input id="c2t" type="radio" name="cType" value="1" onchange=sendData(this);>PI
+			<input id="c2t" type="radio" name="cType" value="2" onchange=sendData(this);>PD
+			<input id="c2t" type="radio" name="cType" value="3" onchange=sendData(this);>PID<br />
+			</td><td>
+			Speed:<br />
+			P: <input id="c3p" type="range" min="0" max="10" step="0.1" oninput=sendData(this);><input type="text" id="c3p_value" readonly value="" style="width:40px"><br />
+			I: <input id="c3i" type="range" min="0" max="5" step="0.01" oninput=sendData(this);><input type="text" id="c3i_value" readonly value="" style="width:40px"><br />
+			D: <input id="c3d" type="range" min="0" max="0.9" step="0.001" oninput=sendData(this);><input type="text" id="c3d_value" readonly value="" style="width:40px"><br />
+			N: <input id="c3n" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c3n_value" readonly value="" style="width:40px"><br />
+			R: <input id="c3r" type="range" min="0" max="1" step="0.01" oninput=sendData(this);><input type="text" id="c3r_value" readonly value="" style="width:40px"><br />
+			Max: <input id="c3m" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c3m_value" readonly value="" style="width:40px"><br />
+			Min: <input id="c3o" type="range" min="0" max="50" step="0.1" oninput=sendData(this);><input type="text" id="c3o_value" readonly value="" style="width:40px"><br />
+			<input id="c3t" type="radio" name="cType" value="0" onchange=sendData(this);>P
+			<input id="c3t" type="radio" name="cType" value="1" onchange=sendData(this);>PI
+			<input id="c3t" type="radio" name="cType" value="2" onchange=sendData(this);>PD
+			<input id="c3t" type="radio" name="cType" value="3" onchange=sendData(this);>PID<br />
+			</td><td>
+			PID Type apply:<br />
+			<input id="y" type="radio" name="PIDsType" value="0" onchange=sendData(this);>Auto
+			<input id="y" type="radio" name="PIDsType" value="1" onchange=sendData(this);>Go PIDs
+			<input id="y" type="radio" name="PIDsType" value="2" onchange=sendData(this);>Stay PIDs
+
+			</td></tr></table>
+		</fieldset><br />
+		<fieldset>
+			<legend>Stepper (not saved to EEPROM)</legend>
+			Current: <input id="v" type="range" min="0" max="255" step="1" oninput=sendData(this);><input type="text" id="v_value" readonly value="" style="width:40px"><br />
+			Max speed: <input id="l" type="range" min="100" max="800" step="1" oninput=sendData(this);><input type="text" id="l_value" readonly value="" style="width:40px"><br /><br />
+		</fieldset><br />
+		<fieldset>
+			<legend>Gyroscope and Accelerometer</legend>
+			Gyro gain (not saved to EEPROM): <input id="j" type="range" min="0.5" max="1.5" step="0.01" oninput=sendData(this);><input type="text" id="j_value" readonly value="" style="width:40px"><br />
+			Gyro filter constant (not saved to EEPROM): <input id="n" type="range" min="0.9" max="1" step="0.001" oninput=sendData(this);><input type="text" id="n_value" readonly value="" style="width:40px">
+			<span style="margin-left: 20px;">
+			Angle offset (not saved to EEPROM): <input id="a" type="range" min="-15" max="15" step="0.01" oninput=sendData(this);><input type="text" id="a_value" readonly value="" style="width:40px"><br />
+			</span>
+			<br />
+			Calibration<br />
+			<button type="button" onclick="sendCommand('k', 1)">Calibrate Gyro and save to EEPROM</button> (Put the robot without any movement to the ground and press the button.<br />
+			<button type="button" onclick="sendCommand('k', 2)">Calibrate ACC (Angle) and save to EEPROM</button> (Put the robot upright on its wheels and push the button ~10 times. For first calibration hold it by hand. When it is self balancing, repeat the calibration a few times without holding it.)<br />
+		</fieldset><br />
+		<fieldset>
+			<legend>Input filtering (not saved to EEPROM)</legend>
+			Speed: <input id="h" type="range" min="0" max="1" step="0.01" oninput=sendData(this);><input type="text" id="h_value" readonly value="" style="width:40px"><br />
+			Steer: <input id="i" type="range" min="0" max="1" step="0.01" oninput=sendData(this);><input type="text" id="i_value" readonly value="" style="width:40px"><br /><br />
+		</fieldset><br />
+		<fieldset>
+		<legend>Wifi configuration</legend>
+			<input id="wm" type="radio" name="wm" value="0" onchange=sendData(this);>AP
+			<input id="wm" type="radio" name="wm" value="1" onchange=sendData(this);>SSID<br />
+			SSID<br /><input type="text" id="WifiSSID" value="" style="width:400px" maxlength="32"><br />
+			Key<br /><input type="text" id="WifiKey" style="width:400px" maxlength="63"><br />
+			<select id="SSIDlist" onchange="selectWifiFromList(this.value)" style="width:400px"></select>
+			<button type="button" onclick="sendCommand('wl',1)">Scan</button><br />
+			<button type="button" onclick="sendWifiDetails()">Save Wifi to EEPROM (Active after Reboot)</button>
+			<button type="button" onclick="sendCommand('wr',1)">Reboot</button>
+		</fieldset>
+	</form>
+</body>
+</html>

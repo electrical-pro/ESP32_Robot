@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+</head>
+
+<body>
+<canvas id="chartContainer" height="300px" width="800px" style="border:1px solid #d3d3d3;"></canvas><br />
+
+<button name="plotStart" onclick="plotStartStop(1)" style="width:80px">Start</button>
+<button name="plotStop" onclick="plotStartStop(0)" style="width:80px">Stop</button>
+<button name="plotClear" style="width:80px">Clear</button>
+<button name="PLUS" onclick="plotScalePlus()" style="width:80px">+</button>
+<button name="MINUS" onclick="plotScaleMinus()" style="width:80px">-</button>
+<button name="MINUS" onclick="darkModeToggle()" style="width:80px">Dark/Light</button><br /><br />
+
+<fieldset style="width:300px">
+  <legend>Plot control</legend>
+Sample rate [Hz]:<br />
+<input id="plotRate" type="radio" name="sampleRate" value="8">25
+<input id="plotRate" type="radio" name="sampleRate" value="4" checked>50
+<input id="plotRate" type="radio" name="sampleRate" value="2">100
+<input id="plotRate" type="radio" name="sampleRate" value="1">200<br /><br />
+
+Signals to plot<br />
+<input type="checkbox" name="plotOption" id="accAngle"        onchange=plotOption(this);>AccAngle<br />
+<input type="checkbox" name="plotOption" id="filterAngle"     onchange=plotOption(this);>FilterAngle<br />
+<input type="checkbox" name="plotOption" id="PID1setpoint"    onchange=plotOption(this); checked>PID angle setpoint<br />
+<input type="checkbox" name="plotOption" id="PID1input"       onchange=plotOption(this); checked>PID angle input<br />
+<input type="checkbox" name="plotOption" id="PID1output"      onchange=plotOption(this);>PID angle output<br />
+<input type="checkbox" name="plotOption" id="PID2setpoint"    onchange=plotOption(this);>PID position setpoint<br />
+<input type="checkbox" name="plotOption" id="PID2input"       onchange=plotOption(this);>PID position input<br />
+<input type="checkbox" name="plotOption" id="PID2output"      onchange=plotOption(this);>PID position output<br />
+<input type="checkbox" name="plotOption" id="PID3setpoint"    onchange=plotOption(this);>PID speed setpoint<br />
+<input type="checkbox" name="plotOption" id="PID3input"       onchange=plotOption(this);>PID speed input<br />
+<input type="checkbox" name="plotOption" id="PID3output"      onchange=plotOption(this);>PID speed output<br />
+<input type="checkbox" name="plotOption" id="noiseValue"      onchange=plotOption(this);>Noise Value<br />
+<input type="checkbox" name="plotOption" id="motCurrent"      onchange=plotOption(this);>Motor current (mc/10.0)<br />
+<input type="checkbox" name="plotOption" id="absSpeedChange"  onchange=plotOption(this);>Abs Speed Change<br />
+<input type="checkbox" name="plotOption" id="avgMotSpeed"     onchange=plotOption(this);>Avg Mot Speed (ams/10.0)<br />
+</fieldset>
+
+<fieldset style="width:300px">
+  <legend>Logging</legend>
+  <input type="checkbox" id="logEnable">Enable logging<br /><br />
+  Time elapsed [s]: <label id="logDuration">0</label><br /><br />
+  <button id="logClear" onclick="clearLogData()">Clear</button>
+  <button id="logExport" onclick="exportLogData()">Export</button>
+</fieldset>
+
+<fieldset style="width:300px">
+  <legend>Signal generation</legend>
+  <button id="noiseOn" onclick="sendCommand('pn',1)">Start</button>
+  <button id="noiseOff" onclick="sendCommand('pn',0)">Stop</button><br />
+  <input id="noiseAmplitude" type="range" min="0.1" max="20" step="0.1" oninput="sendCommand('pa',this.value);document.getElementById('noiseAmplitude_value').value = this.value;">
+  <input type="text" id="noiseAmplitude_value" readonly value="" style="width:40px"><br />
+</fieldset>
+
+</body>
+
+<script>
+  
+var canvas = document.getElementById('chartContainer');
+var ctx = canvas.getContext('2d');
+
+
+var nSample = 500;
+var nSignal = 16;
+var yLim = [-100, 100];
+var col = ["#3366FF","#F70101","#F70366"];
+
+var sampleRate = 0;
+
+var plotEnabled = new Array();
+
+// Init data array
+var data = new Array(nSignal);
+for (var i=0; i<nSignal; i++) data[i] = new Array(nSample);
+for (var i=0; i<nSignal; i++) data[i].fill(0,0,nSample);
+
+var logData = new Array(nSignal);
+for (var i=0; i<nSignal; i++) logData[i] = new Array;
+
+var settingList = [];
+
+var updateChart = function() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	for (var i=0; i<plotEnabled.length; i++) {
+	  var signalNo = plotEnabled[i] + 1;
+    ctx.beginPath();
+    for (var j=0; j<nSample; j++) {
+      var x = j * canvas.clientWidth/nSample;
+      var y = canvas.clientHeight*(-data[signalNo][j]/(yLim[1]-yLim[0]) + 0.5);
+      // var y = data[i];
+      if (j==0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    }
+    ctx.stroke();
+    ctx.strokeStyle = col[i];
+  }
+}
+
+var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']);
+//var connection = new WebSocket('ws://'+'192.168.4.104'+':81/', ['arduino']);
+connection.binaryType = 'arraybuffer';
+connection.onopen = function () {  
+}; 
+
+connection.onerror = function (error) {    
+	console.log('WebSocket Error ', error);
+};
+	
+connection.onmessage = function (e) {  
+  if (typeof(e.data)=='string') { // Text frame
+    settingList.push(e.data);
+  } else { // Binary
+    var d = e.data;
+    var dv = new DataView(d);
+    
+    cmd = dv.getUint8(0);
+    if (cmd==255) {
+      for (var i=0; i<nSignal; i++) {
+        var val = dv.getFloat32(4+i*4, true);
+        //console.log(i, val);
+        data[i].push(val);
+        data[i].shift();
+        
+        
+        if (document.getElementById('logEnable').checked) {
+          logData[i].push(val);
+          document.getElementById('logDuration').innerHTML = Number(logData[0].length/sampleRate).toFixed(2);
+        }
+      }
+      updateChart();
+    }
+  }
+};
+
+var exportLogData = function() {
+  var l = logData[0].length;
+  
+  if (l>0) {
+    var csvFile = '';
+    
+    // Add header with all settings
+    for (var i=0; i<settingList.length; i++) {
+      csvFile += settingList[i];
+      if (i<settingList.length) csvFile += ',';
+    }
+    for (var i=0; i<l; i++) {
+      for (var j=0; j<nSignal; j++) {
+    // logData.forEach(function(x) {
+      // console.log(x.length)
+      var x = logData[j];
+        var val = x[i];
+        // csvFile += val.toString() + ',';
+        csvFile += Number(logData[j][i]).toFixed(6);
+        if (j<nSignal-1) csvFile += ',';
+      }
+      csvFile += '\n';
+    }
+    // console.log(logData[0][0].toFixed(5))
+    
+    var filename = 'logData.csv';
+    var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
+    if (navigator.msSaveBlob) { // IE 10+
+        navigator.msSaveBlob(blob, filename);
+    } else {
+      var link = document.createElement("a");
+      if (link.download !== undefined) { // feature detection
+        // Browsers that support HTML5 download attribute
+        var url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+  }
+}
+
+
+
+var plotScaleMinus = function() {
+  yLim = [yLim[0]*1.3, yLim[1]*1.2];
+}
+
+var plotScalePlus = function() {
+  yLim = [yLim[0]/1.3, yLim[1]/1.2];
+}
+
+var darkModeToggle = function() {
+  if(document.body.style.backgroundColor == "black")
+  {
+    document.body.style.backgroundColor = "white";
+    document.body.style.color = "black";
+  }
+  else
+  {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "white";
+  }
+}
+
+
+
+var clearLogData = function() {
+  for (var i=0; i<nSignal; i++) logData[i] = [];
+  document.getElementById('logDuration').innerHTML = '0';
+  
+}
+
+var plotStartStop = function (x) {
+  var radioButtons = document.getElementsByName("sampleRate");
+  var prescaler = 8;
+  for (i=0; i<radioButtons.length; i++) {
+    if (radioButtons[i].checked) break;
+    prescaler /= 2;
+  }
+  
+  sendCommand('pe', x);
+  sendCommand('pp', prescaler);
+  
+  // Toggle user input disable/enable
+  var b = x==1;
+  
+  e = document.getElementsByName("sampleRate");
+  for (var i=0; i<e.length; i++) {
+    e[i].disabled = b;
+  }
+  
+  document.getElementById("logEnable").disabled = b;
+  document.getElementById("logClear").disabled = b;
+  document.getElementById("logExport").disabled = b;
+  
+  sampleRate = 200/prescaler;
+  
+  plotOption(); 
+  
+  // If logging enabled, init array for data. 
+}
+
+// Find which signals are to be plotted
+var plotOption = function(e) {
+  var plotOptions = document.getElementsByName("plotOption");
+  var plotOptionLength = plotOptions.length;
+  
+  plotEnabled = [];
+  var plotCount = 0;
+  for (var i=0; i<plotOptionLength; i++) {
+    if (plotOptions[i].checked) {
+      plotEnabled[plotCount++] = i;
+    }
+  }
+}
+
+function sendCommand(cmd, val) {
+  var text = cmd + val + 'x';
+  <!--console.log(text);-->
+  connection.send(text);
+}
+
+</script>
+</html>
