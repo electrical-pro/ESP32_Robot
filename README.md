@@ -14,12 +14,15 @@ This fork contains several changes, one of them is a simple ability to change th
 ```
 Another change is the auto current control.
 
-yet another noticible change is the use of two sets of PID valus for "satading" and for "going", this allowed the robot to stay without any movement. (I was not able to achive standing without movement only using one set of PID values).
-Set this line to: 0 for automatic switching
+yet another noticeable change is the use of two sets of PID values for "standing" and for "going", this allowed the robot to stay without any movement. (I was not able to achieve perfect standing without movement just with one set of PID values).
+
+Set this to "0" for automatic switching (Experimental)
 
 ```cpp
 uint8_t pidTypeApply = 1; // PID to use 0=auto, 1= go PIDs, 2= stay PIDs
 ```
+Both PID value needs to be tuned separately wich is "additional headache", so at first, is the best just set it to "1" and use one set of PIDs.
+Not sure that I implemented this feature correctly, but I am satisfied with the results.
 
 
 This is the curcuit:
