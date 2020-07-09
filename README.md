@@ -21,7 +21,7 @@ Set this to "0" for automatic switching (Experimental)
 ```cpp
 uint8_t pidTypeApply = 1; // PID to use 0=auto, 1= go PIDs, 2= stay PIDs
 ```
-Both PID value needs to be tuned separately wich is "additional headache", so at first, is the best just set it to "1" and use one set of PIDs.
+Both PID value needs to be tuned separately which is "additional headache", so at first, is the best just set it to "1" and use one set of PIDs.
 Not sure that I implemented this feature correctly, but I am satisfied with the results.
 
 
