@@ -31,5 +31,6 @@ This is the curcuit:
 <img src="circuit.jpg">
 
 I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all these changes. But this works for me and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
+Thanks Wouter Klop for making this possible.
 
 
