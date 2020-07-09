@@ -25,6 +25,10 @@ uint8_t pidTypeApply = 1; // PID to use 0=auto, 1= go PIDs, 2= stay PIDs
 Both PID value needs to be tuned separately which is "additional headache", so at first, is the best just set it to "1" and use one set of PIDs.
 Not sure that I implemented this feature correctly, but I am satisfied with the results.
 
+Also I added INA219 module to monitor current and voltage. Good for telemetry.
+Also when the charger is connected it measures the capacity of the battery.
+INA219 uses I2C bus just like MPU6050
+
 There are many small tweaks.
 
 This is the curcuit:
