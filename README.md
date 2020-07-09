@@ -1,5 +1,5 @@
-# ESP32_Robot
-This is ESP32 Based Balancing Robot
+# This is ESP32 Based Balancing Robot
+
 This is a fork of the "High speed balancing robot based on ESP32" created by Wouter Klop,
 Original code is here:
 https://gitlab.com/kloppertje/balancingrobot
