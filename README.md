@@ -25,8 +25,11 @@ uint8_t pidTypeApply = 1; // PID to use 0=auto, 1= go PIDs, 2= stay PIDs
 Both PID value needs to be tuned separately which is "additional headache", so at first, is the best just set it to "1" and use one set of PIDs.
 Not sure that I implemented this feature correctly, but I am satisfied with the results.
 
+There are many small tweaks.
 
 This is the curcuit:
 <img src="circuit.jpg">
+
+I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all these changes. But this works for me and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
 
 
