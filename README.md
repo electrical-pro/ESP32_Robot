@@ -12,9 +12,10 @@ This fork contains several changes, one of them is a simple ability to change th
 #define reverseLeftMotor true
 #define reverseRightMotor false
 ```
-Another change is the auto current control.
+Another change is the auto current control. Allows ESP32 to set current through the motors.
+This feature requires you to remove trimmer potentiometer on the DRV8825 module and solder a wire (see the circuit)
 
-yet another noticeable change is the use of two sets of PID values for "standing" and for "going", this allowed the robot to stay without any movement. (I was not able to achieve perfect standing without movement just with one set of PID values).
+Yet another noticeable change is the use of two sets of PID values for "standing" and for "going", this allowed the robot to stay without any movement. (I was not able to achieve perfect standing without movement just with one set of PID values).
 
 Set this to "0" for automatic switching (Experimental)
 
