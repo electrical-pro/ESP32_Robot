@@ -153,7 +153,7 @@ boolean enableControl = 0;
 
 boolean inOTA = false;
 
-uint8_t pidTypeApply = 0; // PID to use 0=auto, 1= go PIDs, 2= stay PIDs 
+uint8_t pidTypeApply = 1; // PID to use 0=auto, 1= go PIDs, 2= stay PIDs 
 
 float batVoltageArray[16];
 float batVoltage = 0;
@@ -779,7 +779,7 @@ if(pidTypeApply ==1) // only go PIDs
 
 
 
-//            //send data via websocket, for bebug purposes
+//            //send data via websocket, for debug purposes
 //  if(millis()>sendLaslWs+400)
 //  {
 //    sendLaslWs = millis();
