@@ -8,7 +8,7 @@ https://gitlab.com/kloppertje/balancingrobot
 The article that explains how this works is here:
 http://elexperiment.nl/2018/11/high-speed-balancing-robot-introduction/
 
-This fork contains several changes, one of them is a simple ability to change the direction of the motors individually:
+This modification contains several changes, one of them is a simple ability to change the direction of the motors individually:
 ```cpp
 #define reverseLeftMotor true
 #define reverseRightMotor false
@@ -34,10 +34,10 @@ INA219 uses I2C bus just like MPU6050
 
 There are many small tweaks also.
 
-This is the curcuit:
+This is the final curcuit:
 <img src="circuit.jpg">
 
-I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all these changes. But this works for me and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
+I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all those changes. But all this worked for me, and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
 Thanks Wouter Klop for making this possible.
 
 
