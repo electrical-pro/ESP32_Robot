@@ -38,7 +38,14 @@ This is the final curcuit:
 <img src="circuit.jpg">
 
 Most of the stuff for this robot I bought on Aliexpress
+
 Motors: https://s.click.aliexpress.com/e/_d84I07S
+
+Wheels: https://s.click.aliexpress.com/e/_dVBnisc (I bought wheels in a different seller but here is cheaper)
+
+Battery https://s.click.aliexpress.com/e/_d8cDFDa 3 battery is needed to get 12V
+
+
 (affiliate links)
 
 I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all those changes. But all this worked for me, and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
