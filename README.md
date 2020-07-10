@@ -45,6 +45,10 @@ Wheels: https://s.click.aliexpress.com/e/_dVBnisc (I bought wheels in a differen
 
 Battery: https://s.click.aliexpress.com/e/_d8cDFDa 3 battery is needed to get 12V
 
+Battery Holder: https://www.aliexpress.com/item/32874365172.html
+
+Protection Board: https://www.aliexpress.com/item/32852015245.html (3s 40a balanced)
+
 DC-DC Converter: https://s.click.aliexpress.com/e/_dWvPhXW
 
 ESP32: https://s.click.aliexpress.com/e/_dTZisbE
@@ -61,7 +65,7 @@ PCB 4X6: https://s.click.aliexpress.com/e/_d65i2Sg
 
 PCB 6X8: https://s.click.aliexpress.com/e/_d7XpQnS
 
-(affiliate links)
+(some of the links are affiliate links)
 
 I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all those changes. But all this worked for me, and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
 Thanks Wouter Klop for making this possible.
