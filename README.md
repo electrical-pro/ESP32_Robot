@@ -30,8 +30,9 @@ Both PID value needs to be tuned separately which is "additional headache", so a
 Also I added INA219 module to monitor current and voltage. Good for telemetry.
 Also when the charger is connected it measures the capacity of the battery.
 INA219 uses I2C bus just like MPU6050
+<img src="photo_3.jpg">
 
-There are many small tweaks.
+There are many small tweaks also.
 
 This is the curcuit:
 <img src="circuit.jpg">
