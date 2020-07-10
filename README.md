@@ -51,7 +51,7 @@ Protection Board: https://www.aliexpress.com/item/32852015245.html (3s 40a balan
 
 DC-DC Converter: https://s.click.aliexpress.com/e/_dWvPhXW
 
-ESP32: https://s.click.aliexpress.com/e/_dTZisbE
+ESP32: https://s.click.aliexpress.com/e/_dTZisbE (3 port)
 
 Hexagonal Coupling: https://s.click.aliexpress.com/e/_dZsbHNw (connects wheels to motors, 5mm)
 
