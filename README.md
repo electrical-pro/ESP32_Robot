@@ -49,8 +49,13 @@ DC-DC Converter: https://s.click.aliexpress.com/e/_dWvPhXW
 
 ESP32: https://s.click.aliexpress.com/e/_dTZisbE
 
-Hexagonal Coupling: https://s.click.aliexpress.com/e/_dZsbHNw (connectes wheels to motors, 5mm)
+Hexagonal Coupling: https://s.click.aliexpress.com/e/_dZsbHNw (connects wheels to motors, 5mm)
 
+Steppr Motor Bracket: https://s.click.aliexpress.com/e/_dW0qsAu
+
+MPU6050 Gyroscope & Accelerometer Module: https://s.click.aliexpress.com/e/_d7tubEG
+
+INA219 Voltage & Current sensor: https://s.click.aliexpress.com/e/_dXsJ7AG
 
 (affiliate links)
 
