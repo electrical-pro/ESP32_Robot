@@ -49,7 +49,7 @@ Battery Holder: https://www.aliexpress.com/item/32874365172.html
 
 Protection Board: https://www.aliexpress.com/item/32852015245.html (3s 40a balanced)
 
-DC-DC Converter: https://s.click.aliexpress.com/e/_dWvPhXW
+DC-DC Converter: https://s.click.aliexpress.com/e/_dWvPhXW (it is different to the one I used, but seems to be better)
 
 ESP32: https://s.click.aliexpress.com/e/_dTZisbE (3 port)
 
