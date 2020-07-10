@@ -71,7 +71,12 @@ I was using 1N5822 schottky diodes, just because I had them.
 
 I hope I did not forget anything :)
 
+This project turned out to be a bit expensive, but I really wanted to make it. If you decided to build it I hope you know what you are doing, PID tuning is not easy... I'd say not for beginners, so good luck.
+I think the robot would be better if it was lighter and a bit smaller, but this assumption needs to be tested.
+Initially, I edited code in PlatformIO, but then I moved to Adruino IDE, for some reason OTA in Adruino IDE worked better, although I still get errors sometimes.
+
+
 I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all those changes. But all this worked for me, and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
-Thanks Wouter Klop for making this possible.
+Thanks Wouter Klop for making this possible, check his video as well: https://www.youtube.com/watch?v=D7hvI_Tb0o4
 
 
