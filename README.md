@@ -8,6 +8,9 @@ https://gitlab.com/kloppertje/balancingrobot
 The article that explains how this works is here:
 http://elexperiment.nl/2018/11/high-speed-balancing-robot-introduction/
 
+This is the video how I built this robot:
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/vPx2oyZGv50/0.jpg)](http://www.youtube.com/watch?v=vPx2oyZGv50 "Video Title")
+
 This modification contains several changes, one of them is a simple ability to change the direction of the motors individually:
 ```cpp
 #define reverseLeftMotor true
