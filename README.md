@@ -1,4 +1,5 @@
 # This is ESP32 Based Balancing Robot
+<img src="photo_1.jpg">
 
 This is a fork of the "High speed balancing robot based on ESP32" created by Wouter Klop,
 Original code is here:
@@ -12,8 +13,9 @@ This fork contains several changes, one of them is a simple ability to change th
 #define reverseLeftMotor true
 #define reverseRightMotor false
 ```
-Another change is the auto current control. Allows ESP32 to set current through the motors.
+Another change is the auto current control. It allows ESP32 to set current through the motors.
 This feature requires you to remove trimmer potentiometer on the DRV8825 module and solder a wire (see the circuit)
+<img src="photo_2.jpg">
 
 Yet another noticeable change is the use of two sets of PID values for "standing" and for "going", this allowed the robot to stay without any movement. (I was not able to achieve perfect standing without movement just with one set of PID values).
 
