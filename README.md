@@ -43,7 +43,13 @@ Motors: https://s.click.aliexpress.com/e/_d84I07S
 
 Wheels: https://s.click.aliexpress.com/e/_dVBnisc (I bought wheels in a different seller but here is cheaper)
 
-Battery https://s.click.aliexpress.com/e/_d8cDFDa 3 battery is needed to get 12V
+Battery: https://s.click.aliexpress.com/e/_d8cDFDa 3 battery is needed to get 12V
+
+DC-DC Converter: https://s.click.aliexpress.com/e/_dWvPhXW
+
+ESP32: https://s.click.aliexpress.com/e/_dTZisbE
+
+Hexagonal Coupling: https://s.click.aliexpress.com/e/_dZsbHNw (connectes wheels to motors, 5mm)
 
 
 (affiliate links)
