@@ -57,6 +57,10 @@ MPU6050 Gyroscope & Accelerometer Module: https://s.click.aliexpress.com/e/_d7tu
 
 INA219 Voltage & Current sensor: https://s.click.aliexpress.com/e/_dXsJ7AG
 
+PCB 4X6: https://s.click.aliexpress.com/e/_d65i2Sg
+
+PCB 6X8: https://s.click.aliexpress.com/e/_d7XpQnS
+
 (affiliate links)
 
 I must warn you that I am not a professional programmer, so there are probably much smarter ways to make all those changes. But all this worked for me, and I am happy with the results. The great thing about open source is that you can change the code the way you like it.
