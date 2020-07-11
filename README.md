@@ -13,7 +13,7 @@ https://youtu.be/vPx2oyZGv50
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/vPx2oyZGv50/0.jpg)](http://www.youtube.com/watch?v=vPx2oyZGv50 "Video Title")
 
-This modification contains several changes, one of them is a simple ability to change the direction of the motors individually:
+This modification of the code contains several changes, one of them is a simple ability to change the direction of the motors individually:
 ```cpp
 #define reverseLeftMotor true
 #define reverseRightMotor false
