@@ -46,6 +46,8 @@ Most of the stuff for this robot I bought on Aliexpress
 
 Motors: https://s.click.aliexpress.com/e/_d84I07S
 
+DVR8825 stepper motor driver: https://s.click.aliexpress.com/e/_Anmk61
+
 Wheels: https://s.click.aliexpress.com/e/_dVBnisc (I bought wheels in a different seller but here is cheaper)
 
 Battery: https://s.click.aliexpress.com/e/_d8cDFDa 3 battery is needed to get 12V
