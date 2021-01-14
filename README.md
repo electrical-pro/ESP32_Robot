@@ -72,6 +72,10 @@ PCB 4X6: https://s.click.aliexpress.com/e/_d65i2Sg
 
 PCB 6X8: https://s.click.aliexpress.com/e/_d7XpQnS
 
+Pin Header: https://s.click.aliexpress.com/e/_AUvLzT
+
+Female PCB Header: https://s.click.aliexpress.com/e/_AClQip
+
 I was using 1N5822 schottky diodes, just because I had them.
 
 (some of the links are affiliate links)
