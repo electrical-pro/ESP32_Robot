@@ -76,6 +76,8 @@ Pin Header: https://s.click.aliexpress.com/e/_AUvLzT
 
 Female PCB Header: https://s.click.aliexpress.com/e/_AClQip
 
+Electrolytic Capacitor https://s.click.aliexpress.com/e/_A2atvx
+
 I was using 1N5822 schottky diodes, just because I had them.
 
 (some of the links are affiliate links)
