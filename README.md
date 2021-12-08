@@ -13,9 +13,11 @@ https://youtu.be/vPx2oyZGv50
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/vPx2oyZGv50/0.jpg)](http://www.youtube.com/watch?v=vPx2oyZGv50 "Video Title")
 
-// Use v3.3.5-1-g85c43024c (1.0.6)  version of ESP32 Core
+# Compile
+Use 1.0.6 version of ESP32 Core
 https://github.com/espressif/arduino-esp32/releases/tag/1.0.6
 
+# Mode
 This modification of the code contains several changes, one of them is a simple ability to change the direction of the motors individually:
 ```cpp
 #define reverseLeftMotor true
