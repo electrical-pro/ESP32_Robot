@@ -17,6 +17,10 @@ https://youtu.be/vPx2oyZGv50
 Use 1.0.6 version of ESP32 Core
 https://github.com/espressif/arduino-esp32/releases/tag/1.0.6
 
+# Answers to your questions
+!!! Read this issue to get common answers: https://github.com/electrical-pro/ESP32_Robot/issues/2
+Or create a new issue :)
+
 # Mode
 This modification of the code contains several changes, one of them is a simple ability to change the direction of the motors individually:
 ```cpp
