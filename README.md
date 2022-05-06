@@ -49,7 +49,7 @@ INA219 uses I2C bus just like MPU6050
 There are many small tweaks also.
 
 This is the final curcuit:
-<img src="circuit_0_1.jpg">
+<img src="circuit_01.jpg">
 
 Most of the stuff for this robot I bought on Aliexpress
 
