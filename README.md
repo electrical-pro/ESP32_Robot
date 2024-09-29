@@ -53,43 +53,41 @@ This is the final curcuit:
 
 Most of the stuff for this robot I bought on Aliexpress
 
-Motors: https://s.click.aliexpress.com/e/_d84I07S
+Motors: [https://s.click.aliexpress.com/e/_d84I07S](https://s.click.aliexpress.com/e/_d84I07S)
 
-DVR8825 stepper motor driver: https://s.click.aliexpress.com/e/_Anmk61
+DVR8825 stepper motor driver: [https://s.click.aliexpress.com/e/_Anmk61](https://s.click.aliexpress.com/e/_DdbsVY5)
 
-Wheels: https://s.click.aliexpress.com/e/_dVBnisc (I bought wheels in a different seller but here is cheaper)
+Battery: [https://s.click.aliexpress.com/e/_d8cDFDa](https://s.click.aliexpress.com/e/_d8cDFDa) 3 battery is needed to get 12V
 
-Battery: https://s.click.aliexpress.com/e/_d8cDFDa 3 battery is needed to get 12V
+Battery Holder: [https://www.aliexpress.com/item/32874365172.html](https://www.aliexpress.com/item/32874365172.html)
 
-Battery Holder: https://www.aliexpress.com/item/32874365172.html
+Battery Protection Board: [https://s.click.aliexpress.com/e/_DknQERR](https://s.click.aliexpress.com/e/_DknQERR) (3s 40a balanced)
 
-Protection Board: https://www.aliexpress.com/item/32852015245.html (3s 40a balanced)
+DC-DC Converter: [https://s.click.aliexpress.com/e/_dWvPhXW (it is different to the one I used, but seems to be better)](https://s.click.aliexpress.com/e/_Dnkh81b)
 
-DC-DC Converter: https://s.click.aliexpress.com/e/_dWvPhXW (it is different to the one I used, but seems to be better)
+ESP32: [https://s.click.aliexpress.com/e/_dTZisbE (3 port)](https://s.click.aliexpress.com/e/_DlFZPEt)
 
-ESP32: https://s.click.aliexpress.com/e/_dTZisbE (3 port)
+Hexagonal Coupling: [https://s.click.aliexpress.com/e/_dZsbHNw](https://s.click.aliexpress.com/e/_dZsbHNw) (connects wheels to motors, 5mm)
 
-Hexagonal Coupling: https://s.click.aliexpress.com/e/_dZsbHNw (connects wheels to motors, 5mm)
+Steppr Motor Bracket: [https://s.click.aliexpress.com/e/_dW0qsAu](https://s.click.aliexpress.com/e/_dW0qsAu)
 
-Steppr Motor Bracket: https://s.click.aliexpress.com/e/_dW0qsAu
+MPU6050 Gyroscope & Accelerometer Module: [https://s.click.aliexpress.com/e/_d7tubEG](https://s.click.aliexpress.com/e/_Ddgj3L7)
 
-MPU6050 Gyroscope & Accelerometer Module: https://s.click.aliexpress.com/e/_d7tubEG
+INA219 Voltage & Current sensor: [https://s.click.aliexpress.com/e/_dXsJ7AG](https://s.click.aliexpress.com/e/_DeFQFX7)
 
-INA219 Voltage & Current sensor: https://s.click.aliexpress.com/e/_dXsJ7AG
+PCB 4X6: [https://s.click.aliexpress.com/e/_d65i2Sg](https://s.click.aliexpress.com/e/_DlxggA5)
 
-PCB 4X6: https://s.click.aliexpress.com/e/_d65i2Sg
+PCB 6X8: [https://s.click.aliexpress.com/e/_d7XpQnS](https://s.click.aliexpress.com/e/_DlxggA5)
 
-PCB 6X8: https://s.click.aliexpress.com/e/_d7XpQnS
+Pin Header: [https://s.click.aliexpress.com/e/_DdOig6l](https://s.click.aliexpress.com/e/_DdOig6l)
 
-Pin Header: https://s.click.aliexpress.com/e/_AUvLzT
+Female PCB Header: [https://s.click.aliexpress.com/e/_DDBKykp](https://s.click.aliexpress.com/e/_DDBKykp)
 
-Female PCB Header: https://s.click.aliexpress.com/e/_AClQip
+Electrolytic Capacitor [https://s.click.aliexpress.com/e/_A2atvx](https://s.click.aliexpress.com/e/_A2atvx)
 
-Electrolytic Capacitor https://s.click.aliexpress.com/e/_A2atvx
+Ceramic Capacitors: [https://s.click.aliexpress.com/e/_ABg3GZ](https://s.click.aliexpress.com/e/_ABg3GZ)
 
-Ceramic Capacitors: https://s.click.aliexpress.com/e/_ABg3GZ
-
-Resistors: https://s.click.aliexpress.com/e/_9AslPB
+Resistors: [https://s.click.aliexpress.com/e/_9AslPB](https://s.click.aliexpress.com/e/_9AslPB)
 
 I was using 1N5822 schottky diodes, just because I had them.
 
