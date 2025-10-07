@@ -55,37 +55,33 @@ Most of the stuff for this robot I bought on Aliexpress
 
 Motors: [https://s.click.aliexpress.com/e/_d84I07S](https://s.click.aliexpress.com/e/_d84I07S)
 
-DVR8825 stepper motor driver: [https://s.click.aliexpress.com/e/_Anmk61](https://s.click.aliexpress.com/e/_DdbsVY5)
+DVR8825 stepper motor driver: [https://s.click.aliexpress.com/e/_c3ZBrKLV](https://s.click.aliexpress.com/e/_c3ZBrKLV)
 
 Battery: [https://s.click.aliexpress.com/e/_d8cDFDa](https://s.click.aliexpress.com/e/_d8cDFDa) 3 battery is needed to get 12V
 
-Battery Holder: [https://www.aliexpress.com/item/32874365172.html](https://www.aliexpress.com/item/32874365172.html)
+Battery Holder: [https://s.click.aliexpress.com/e/_c43gEmhD](https://s.click.aliexpress.com/e/_c43gEmhD)
 
 Battery Protection Board: [https://s.click.aliexpress.com/e/_DknQERR](https://s.click.aliexpress.com/e/_DknQERR) (3s 40a balanced)
 
-DC-DC Converter: [https://s.click.aliexpress.com/e/_dWvPhXW (it is different to the one I used, but seems to be better)](https://s.click.aliexpress.com/e/_Dnkh81b)
+DC-DC Converter: [https://s.click.aliexpress.com/e/_c41fyYI7](https://s.click.aliexpress.com/e/_c41fyYI7)
 
-ESP32: [https://s.click.aliexpress.com/e/_dTZisbE (3 port)](https://s.click.aliexpress.com/e/_DlFZPEt)
+ESP32: [https://s.click.aliexpress.com/e/_c3VhEwTl](https://s.click.aliexpress.com/e/_c3VhEwTl)
 
 Hexagonal Coupling: [https://s.click.aliexpress.com/e/_dZsbHNw](https://s.click.aliexpress.com/e/_dZsbHNw) (connects wheels to motors, 5mm)
 
 Steppr Motor Bracket: [https://s.click.aliexpress.com/e/_dW0qsAu](https://s.click.aliexpress.com/e/_dW0qsAu)
 
-MPU6050 Gyroscope & Accelerometer Module: [https://s.click.aliexpress.com/e/_d7tubEG](https://s.click.aliexpress.com/e/_Ddgj3L7)
+MPU6050 Gyroscope & Accelerometer Module: [https://s.click.aliexpress.com/e/_c4SNSi7N](https://s.click.aliexpress.com/e/_c4SNSi7N)
 
-INA219 Voltage & Current sensor: [https://s.click.aliexpress.com/e/_dXsJ7AG](https://s.click.aliexpress.com/e/_DeFQFX7)
+INA219 Voltage & Current sensor: [https://s.click.aliexpress.com/e/_c3PkW3dN](https://s.click.aliexpress.com/e/_c3PkW3dN)
 
-PCB 4X6: [https://s.click.aliexpress.com/e/_d65i2Sg](https://s.click.aliexpress.com/e/_DlxggA5)
+PCBs: [https://s.click.aliexpress.com/e/_c3icY5Ar](https://s.click.aliexpress.com/e/_c3icY5Ar)
 
-PCB 6X8: [https://s.click.aliexpress.com/e/_d7XpQnS](https://s.click.aliexpress.com/e/_DlxggA5)
-
-Pin Header: [https://s.click.aliexpress.com/e/_DdOig6l](https://s.click.aliexpress.com/e/_DdOig6l)
-
-Female PCB Header: [https://s.click.aliexpress.com/e/_DDBKykp](https://s.click.aliexpress.com/e/_DDBKykp)
+Pin Header: [https://s.click.aliexpress.com/e/_c2zNwZSn](https://s.click.aliexpress.com/e/_c2zNwZSn)
 
 Electrolytic Capacitor [https://s.click.aliexpress.com/e/_A2atvx](https://s.click.aliexpress.com/e/_A2atvx)
 
-Ceramic Capacitors: [https://s.click.aliexpress.com/e/_ABg3GZ](https://s.click.aliexpress.com/e/_ABg3GZ)
+Ceramic Capacitors: [https://s.click.aliexpress.com/e/_c4F1Wrfh](https://s.click.aliexpress.com/e/_c4F1Wrfh)
 
 Resistors: [https://s.click.aliexpress.com/e/_9AslPB](https://s.click.aliexpress.com/e/_9AslPB)
 
