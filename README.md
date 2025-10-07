@@ -53,7 +53,7 @@ This is the final curcuit:
 
 Most of the stuff for this robot I bought on Aliexpress
 
-Motors: [https://s.click.aliexpress.com/e/_d84I07S](https://s.click.aliexpress.com/e/_d84I07S)
+Motors: [https://s.click.aliexpress.com/e/_c4WVLv15](https://s.click.aliexpress.com/e/_c4WVLv15)
 
 DVR8825 stepper motor driver: [https://s.click.aliexpress.com/e/_c3ZBrKLV](https://s.click.aliexpress.com/e/_c3ZBrKLV)
 
@@ -69,7 +69,7 @@ ESP32: [https://s.click.aliexpress.com/e/_c3VhEwTl](https://s.click.aliexpress.c
 
 Hexagonal Coupling: [https://s.click.aliexpress.com/e/_dZsbHNw](https://s.click.aliexpress.com/e/_dZsbHNw) (connects wheels to motors, 5mm)
 
-Steppr Motor Bracket: [https://s.click.aliexpress.com/e/_dW0qsAu](https://s.click.aliexpress.com/e/_dW0qsAu)
+Steppr Motor Bracket: [https://s.click.aliexpress.com/e/_c4q9gSbN](https://s.click.aliexpress.com/e/_c4q9gSbN)
 
 MPU6050 Gyroscope & Accelerometer Module: [https://s.click.aliexpress.com/e/_c4SNSi7N](https://s.click.aliexpress.com/e/_c4SNSi7N)
 
